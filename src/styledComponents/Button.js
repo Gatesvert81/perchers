@@ -18,6 +18,10 @@ const StyledButton = styled.button`
         background-color: orangered;
         border-radius: 5px;
         transition: 0.2s;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
     }
 
     &.primary:hover, &.tetiary:hover, &.regular:hover, &.secondary:hover, &.side__nav__btn:hover  {
@@ -117,6 +121,12 @@ const StyledButton = styled.button`
         /* border: 1px solid ${ props => props. COLORS.gray } ; */
     }
 
+    &.sign__in__btn{
+        border: 2px solid grey;
+        /* height: 100% ; */
+        border-radius: 5px;
+    }
+
     &.sign__up__btn{
         padding: 10px 20px ;
         font-size: 0.75rem;
@@ -128,6 +138,7 @@ const StyledButton = styled.button`
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
+        margin-left: 10px ;
     }
 
     &.section__btn{
@@ -178,9 +189,9 @@ const StyledButton = styled.button`
 
 const Wrapper = styled.div``
 
-function Button({ children, click, name, select }) {
+function Button({ children, click, name, select, type }) {
     return (
-        <StyledButton onClick={click} 
+        <StyledButton onClick={click} type={type}
         className={name} 
         select={select}  
         >

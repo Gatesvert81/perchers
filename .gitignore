@@ -32,3 +32,10 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# folders and files 
+WriteWrapper.js 
+firebase
+initFirebase.js
+cloudFirestore
+Write.js

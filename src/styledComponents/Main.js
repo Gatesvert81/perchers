@@ -29,11 +29,11 @@ const Main = styled.main`
 
     @media all and (min-width: 450px) {
 
-        display: flex;
+        /* display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 5vw;
+        padding: 0px 5vw; */
 
         &.main::before{
             content: '';
@@ -49,6 +49,30 @@ const Main = styled.main`
 
 
     }
+
+
+    @media all and (min-width: 650px) {
+
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px 5vw;
+
+&.main::before{
+    content: '';
+    z-index: -10;
+    width: 100vw;
+    height: 100vh;
+    background-color: burlywood;
+    position: absolute;
+    top: -10vh;
+    left: -20vh;
+    border-radius: 20px;
+}
+
+
+}
 
 
 

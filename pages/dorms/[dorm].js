@@ -14,6 +14,8 @@ import { useRouter } from 'next/dist/client/router'
 import AnchorLink from '../../src/Components/AnchorLink'
 import ProfileCard from '../../src/Components/ProfileCard'
 
+// Dorm page to display dorm details of the dorm 
+
 function dorm({ data }) {
 
     const router = useRouter()
@@ -30,7 +32,7 @@ function dorm({ data }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-
+        {/* Dorm Navigation Bar */}
             <MainNav>
             </MainNav>
 
@@ -118,6 +120,7 @@ function dorm({ data }) {
     )
 }
 
+// Fetches room data from api in the API folder in pages folder 
 export async function getServerSideProps(context) {
     const res = await fetch(`${server}/api/rooms`)
     const data = await res.json()

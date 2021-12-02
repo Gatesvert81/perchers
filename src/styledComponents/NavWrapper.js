@@ -7,7 +7,7 @@ const NavWrapper = styled.div`
     /* Mobile View  */
 
     &.homenav__main{
-        width: 50%;
+        width: 70%;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
@@ -26,6 +26,15 @@ const NavWrapper = styled.div`
         justify-content: space-between;
         align-items: center;
         /* background-color: blue; */
+    }
+
+    &.homenav__signup{
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center ;
+        width: 100% ;
+        /* background-color: aliceblue; */
     }
 
     &.nav__btns{
@@ -175,7 +184,7 @@ const NavWrapper = styled.div`
 
     @media all and (min-width: 450px ) {
         &.homenav__main{
-        width: 50%;
+        /* width: 50%; */
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -193,6 +202,42 @@ const NavWrapper = styled.div`
 
     &.list__nav__filters{
         width: 70%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &.homenav__signup{
+        display: flex; 
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center ;
+        width: 100% ;
+    }
+    &.list__nav__main{
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &.list__nav__logo{
+        width: fit-content;
+        padding-right: 10px;
+    }
+
+    &.list__nav__filters{
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &.list__nav__btns{
+        width: 80px ;
         display: flex;
         flex-direction: row;
         justify-content: space-between;

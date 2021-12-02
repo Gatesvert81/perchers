@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '../styledComponents/Button'
 import Nav from '../styledComponents/Nav'
 import NavWrapper from '../styledComponents/NavWrapper'
@@ -6,8 +6,13 @@ import AnchorLink from './AnchorLink'
 import Image from 'next/image'
 import arrow from '../../public/arrow.png'
 import Text from '../styledComponents/Text'
+import { RegisterContext } from './Context'
 
+// Landing Page Navigation Bar 
 function HomeNav() {
+
+    const [register, setregister] = useContext(RegisterContext)
+
     return (
         <Nav className="homenav" >
             <NavWrapper className="homenav__logo">
@@ -23,9 +28,25 @@ function HomeNav() {
                     </NavWrapper>
                 </NavWrapper>
                 <NavWrapper className="homenav__signup" >
+                    <AnchorLink route={'/registration'} >
+                        <Button
+                            name="primary"
+                            click={() => setregister(false)}
+                        >
+                            <Text className="sign__up__btn__text" >
+                                Sign In
+                            </Text>
+                            <Image
+                                src={arrow}
+                                width={'30px'}
+                                height={`30px`}
+                            />
+                        </Button>
+                    </AnchorLink>
                     <AnchorLink route="/registration" >
                         <Button
                             name="sign__up__btn"
+                            click={() => setregister(true)}
                         >
                             <Text className="sign__up__btn__text" >
                                 Sign Up

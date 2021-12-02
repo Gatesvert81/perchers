@@ -4,6 +4,8 @@ import Text from '../styledComponents/Text'
 // import person from '../../public/person.png'
 // import Image from 'next/image'
 
+// Card to display user profile details 
+
 function ProfileCard({children}) {
     return (
         <ProfileWrapper className="profile__card" >

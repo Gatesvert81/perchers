@@ -4,6 +4,7 @@ import MainNav from '../../../src/Components/MainNav'
 import Input from '../../../src/styledComponents/Input'
 import Button from '../../../src/styledComponents/Button'
 import MessageCard from '../../../src/Components/MessageCard'
+import WriteToCloudFirestore from '../../../src/Components/cloudFirestore/Write'
 
 function messages() {
 
@@ -76,6 +77,7 @@ function messages() {
                         <Button name="primary" >
                             Send
                         </Button>
+                        <WriteToCloudFirestore />
                     </ChatWrapper>
                 </ChatWrapper>
             </ChatWrapper>

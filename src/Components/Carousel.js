@@ -3,6 +3,9 @@ import React, { useCallback, useState } from 'react'
 import Button from '../styledComponents/Button'
 import CarouselWrapper from '../styledComponents/CarouselWrapper'
 
+// carousel to display dorm images 
+
+
 function Carousel({ preview, images }) {
 
     // console.log(images)

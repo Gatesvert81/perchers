@@ -37,7 +37,7 @@ const HomeWrapper = styled.div`
         background-color: blueviolet;
         border-radius: 15px;
         transition: 0.2s;
-        transform: ${ props => props.select ? `translateX(0)` : `translateX(92%)`  };
+        transform: ${props => props.select ? `translateX(0)` : `translateX(92%)`};
     }
 
     &.home__main__section{
@@ -106,46 +106,75 @@ const HomeWrapper = styled.div`
     }
 
     &.home__image__container{
+        display: none;
         width: 300px;
         height: 40vh;
         padding: 2px;
         border-radius: 2px;
-        position: relative;
+        position: relative !important ;
     }
 
     /* Mid-Desktop View  */
 
-
     @media all and (min-width: 450px) {
-
         &.home__main{
         padding: 10px 0px;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        /* background-color: greenyellow; */
+        align-items: center;
     }
 
-        &.home__main__image{
-        width: fit-content;
-        height: fit-content;
-        padding: 5px ;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: darkturquoise;
-        position : relative;
+
+
+
+    &.home__main__image{
+        display: none;
+        position: relative ;
     }
 
     &.home__image__container{
+        display:  none;
         width: 300px;
         height: 45vh;
         padding: 2px;
         border-radius: 2px;
-        position: relative;
+        position: relative !important;
     }
 
+}
+
+    @media all and (min-width: 650px) {
+
+        &.home__main{
+            padding: 10px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            /* background-color: greenyellow; */
+        }
+
+        &.home__main__image{
+            width: fit-content;
+            height: fit-content;
+            padding: 5px ;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: darkturquoise;
+            position : relative !important;
+        }
+    
+        &.home__image__container{
+            display:  block;
+            width: 300px;
+            height: 45vh;
+            padding: 2px;
+            border-radius: 2px;
+            position: relative !important;
+        }
     }
+
+    
 
 `
 

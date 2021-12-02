@@ -8,6 +8,8 @@ import RentalWrapper from '../../../src/styledComponents/RentalWrapper'
 import ChatCard from '../../../src/Components/ChatCard'
 import { server } from '../../../config'
 
+// Display all chats of the user if any is available 
+
 function index({data}) {
 
     const [chats, setChats] = useState(true)

@@ -5,6 +5,7 @@ import Text from '../styledComponents/Text'
 import AnchorLink from './AnchorLink'
 import Carousel from './Carousel'
 
+// Card to display dorm details on the homepage 
 function ListCard({ expand, room }) {
 
     // console.log(room.images)

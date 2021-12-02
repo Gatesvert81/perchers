@@ -8,6 +8,8 @@ import menu from '../../public/menu.png'
 import notify from '../../public/notify.png'
 import AnchorLink from './AnchorLink'
 
+// Main Navigation on the homepage 
+
 function MainNav({ children }) {
 
     const [sideNav, setSideNav] = useState(false)
