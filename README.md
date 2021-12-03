@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a next js website project
 
 ## Getting Started
 
@@ -12,11 +12,29 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Pages folder contains all the pages of the website.
+It contains the ;
+-Dorm folder
+-API  folder
+-Profile folder
+all of which are pages on the website for easy routing.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+`index.js` is the landing page of the site and all other pages proceedes from there.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## src Folder
+The src folder contains ;
+-Assets
+This contains dummy data linked in the API to provide usable data if I were to use an actual API.
+It also cantains the theme of the website. From the fonts to the color, sizes and default designs.
+
+
+-Components
+This contains reusable components that I use in the website. From navigation bars to cards.
+
+-StyledComponents
+This contains the files of the styling of the website using `styled-componenets` 
+
 
 ## Learn More
 
@@ -28,7 +46,4 @@ To learn more about Next.js, take a look at the following resources:
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I would be deployimg this on vercel. 

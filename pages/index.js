@@ -12,7 +12,6 @@ import Text from '../src/styledComponents/Text'
 import AnchorLink from '../src/Components/AnchorLink'
 // import firebase from '../src/firebase/initFirebase'
 
-// firebase()
 
 export default function Home() {
 
