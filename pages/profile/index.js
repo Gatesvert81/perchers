@@ -9,7 +9,7 @@ import Input from '../../src/styledComponents/Input'
 import ProfileWrapper from '../../src/styledComponents/ProfileWrapper'
 import { getSession, useSession } from 'next-auth/react';
 
-function index() {
+function Index() {
 
     const [edit, setEdit] = useState(false)
 
@@ -192,4 +192,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default index
+export default Index

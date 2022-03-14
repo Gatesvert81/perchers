@@ -14,7 +14,7 @@ import axios from 'axios'
 import HostRoomOptions from '../src/Components/HostRoomOptions'
 import RoomNegotiation from '../src/Components/RoomNegotiation'
 
-function host({ halls }) {
+function Host({ halls }) {
 
 
     const [images, setImages] = useState(null)
@@ -254,4 +254,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default host
+export default Host

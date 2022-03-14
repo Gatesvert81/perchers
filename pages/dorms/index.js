@@ -14,7 +14,7 @@ import axios from 'axios'
 
 // Display homeoage with list of dormetories 
 
-function index({ dorms }) {
+function Index({ dorms }) {
 
     console.log(dorms)
 
@@ -73,4 +73,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default index
+export default Index

@@ -9,7 +9,7 @@ import RentalWrapper from '../../src/styledComponents/RentalWrapper'
 import axios from 'axios'
 import ListCard from '../../src/Components/ListCard'
 
-function rentals({ userRooms }) {
+function Rentals({ userRooms }) {
 
 
     const [register, setRegister] = useState(true)
@@ -128,4 +128,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default rentals
+export default Rentals

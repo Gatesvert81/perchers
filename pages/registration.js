@@ -9,7 +9,7 @@ import { getSession } from 'next-auth/react'
 
 // Registration Page containg the Sign Up and Sign In 
 
-function registration() {
+function Registration() {
 
     // Set state for Sign In and Sign Up Tab
     const [register, setRegister] = useState(false)
@@ -92,4 +92,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default registration
+export default Registration

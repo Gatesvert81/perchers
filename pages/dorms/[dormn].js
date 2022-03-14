@@ -17,7 +17,7 @@ import Details from '../../src/Components/Details'
 
 // Dorm page to display dorm details of the dorm 
 
-function dorm({ dormRoom, roomHost }) {
+function Dorm({ dormRoom, roomHost }) {
 
     const router = useRouter()
 
@@ -177,4 +177,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default dorm
+export default Dorm

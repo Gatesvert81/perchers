@@ -11,7 +11,7 @@ import ChatCard from '../../../src/Components/ChatCard'
 
 // Display all chats of the user if any is available 
 
-function chatsIndex({ chats }) {
+function ChatsIndex({ chats }) {
 
     const allChats = chats.data
     console.log(allChats)
@@ -82,4 +82,4 @@ export async function getServerSideProps(context) {
 }
 
 
-export default chatsIndex
+export default ChatsIndex

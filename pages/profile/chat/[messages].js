@@ -13,7 +13,7 @@ import Form from '../../../src/styledComponents/Form'
 
 const socket = io("http://localhost:5000")
 
-function messagesPage({ messageArray }) {
+function MessagesPage({ messageArray }) {
 
     const [chat, setChat] = useState([])
 
@@ -124,4 +124,4 @@ export async function getServerSideProps(context) {
     }
 }
 
-export default messagesPage
+export default MessagesPage
