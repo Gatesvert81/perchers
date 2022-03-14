@@ -3,20 +3,20 @@ import DormWrapper from '../../src/styledComponents/DormWrapper'
 import Head from 'next/head'
 import MainNav from '../../src/Components/MainNav'
 import ListCard from '../../src/Components/ListCard'
-import { server } from '../../config'
 import NavWrapper from '../../src/styledComponents/NavWrapper'
 import Input from '../../src/styledComponents/Input'
 import Image from 'next/image'
 import filter from '../../public/filter.png'
 import Button from '../../src/styledComponents/Button'
 import Text from '../../src/styledComponents/Text'
+import axios from 'axios'
 
 
 // Display homeoage with list of dormetories 
 
-function index(data) {
+function index({ dorms }) {
 
-
+    console.log(dorms)
 
     return (
         <DormWrapper className="dorms" >
@@ -52,8 +52,8 @@ function index(data) {
                 </DormWrapper>
                 <DormWrapper className="dorms__render">
                     {
-                        data.data.map((room, index) => (
-                            <ListCard room={room} key={index} />
+                        dorms?.data.map((room, roomIndex) => (
+                            <ListCard room={room} key={roomIndex} />
                         ))
                     }
                 </DormWrapper>
@@ -65,13 +65,11 @@ function index(data) {
 // Fetches room data from api in the API folder in pages folder 
 
 export async function getServerSideProps(context) {
-    const res = await fetch(`${server}/api/rooms`)
-    const data = await res.json()
-
-
+    const response = await axios.get('http://localhost:5000/getRooms')
+    const dorms = response.data
 
     return {
-        props: { data },
+        props: { dorms },
     }
 }
 

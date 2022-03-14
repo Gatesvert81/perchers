@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import styled from 'styled-components'
 import { COLORS } from '../assets/theme'
 
@@ -18,24 +18,27 @@ const Wrapper = styled.div`
         box-shadow: 
             0px 0px 2px ${COLORS.btnShadow};
         border-radius: 5px;
-        opacity: ${ props => props.check ? "1" : "0.7"};
-        color: ${ props => props.check ? "white" : "black"};
-        background-color: ${ props => props.check ? "chartreuse" : "white"};
+        opacity: ${props => props.check ? "1" : "0.7"};
+        color: ${props => props.check ? "white" : "black"};
+        background-color: ${props => props.check ? "orangered" : "white"};
         transition: 0.3s ease-in-out ;
+        cursor: pointer;
     }
 
 `
 
-function Check({children, check}) {
+function Check({ children, setCheckedValue, isCheck, handleCheck }) {
 
-    const [isCheck, setIsCheck] = useState(false)
-
-    const handleCheck = () => {
-        setIsCheck(!isCheck)
-    }
+    const [check, setCheck] = useState(null)
 
     return (
-        <Wrapper className="check" check={isCheck} onClick={() => handleCheck()} >
+        <Wrapper 
+            className="check" 
+            check={isCheck || check} 
+            onClick={() => {
+            const value = handleCheck(children, setCheckedValue)
+            setCheck(value)
+            } } >
             {/* <Wrapper className="check__image" >
                 I
             </Wrapper> */}

@@ -3,33 +3,32 @@ import Button from '../styledComponents/Button'
 import ListWrapper from '../styledComponents/ListWrapper'
 import Text from '../styledComponents/Text'
 import AnchorLink from './AnchorLink'
-import Carousel from './Carousel'
+import Image from 'next/image'
 
 // Card to display dorm details on the homepage 
 function ListCard({ expand, room }) {
 
-    // console.log(room.images)
-
+    console.log(room)
     return (
         <>
-            <AnchorLink route={`dorms/${room?.id}`} >
+            <AnchorLink route={`dorms/${room?.id}?roomId=${room?.id}`} >
                 <ListWrapper className="list__card" expand={expand} >
-                    <ListWrapper  className="list__card__carousel" >
-                        <Carousel 
-                            preview={false} 
-                            images={room.images} 
-                            />
+                    <ListWrapper className="list__card__carousel" >
+                        {/* <Image
+                            src={room?.images[0]}
+                            layout="fill"
+                        /> */}
                     </ListWrapper>
                     <ListWrapper className="list__card__detail" >
                         <ListWrapper className="list__card__main" >
                             <ListWrapper  >
                                 <Text className="list__card__head" >
-                                    {room?.collegeName}
+                                    {room?.university_name}
                                 </Text>
                             </ListWrapper>
                             <ListWrapper  >
                                 <Text className="list__card__text" >
-                                    {room?.description}
+                                    {room?.hall_name}
                                 </Text>
                             </ListWrapper>
                         </ListWrapper>

@@ -1,42 +1,122 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import AnchorLink from '../src/Components/AnchorLink'
 import Button from '../src/styledComponents/Button'
-import Form from '../src/styledComponents/Form'
 import HostWrapper from '../src/styledComponents/HostWrapper'
 import Input from '../src/styledComponents/Input'
 import Text from '../src/styledComponents/Text'
 import Check from '../src/Components/Check'
 import MainNav from '../src/Components/MainNav'
 import TextInput from '../src/styledComponents/TextInput'
+import { getSession, useSession } from 'next-auth/react'
+import SelectOptions from '../src/Components/SelectOptions'
+import axios from 'axios'
+import HostRoomOptions from '../src/Components/HostRoomOptions'
+import RoomNegotiation from '../src/Components/RoomNegotiation'
 
-function host() {
+function host({ halls }) {
 
-    const [check, setCheck] = useState(false)
+
     const [images, setImages] = useState(null)
-    // const [image, setImage] = useState(null)
+    const [hall, setHall] = useState(null)
+    const [numOfOccupants, setNumOfOccupants] = useState()
+    const [description, setDescription] = useState(null)
+    const [price, setPrice] = useState(null)
+    const [negotialble, setNegotialble] = useState(null)
+    const [options, setOptions] = useState(null)
+    const [imagePreview, setimagePreview] = useState(null)
 
-    // useEffect(() => {
-    //     const imageArray = []?.push(image)
-    //     console.log(imageArray)
+    const { data: session } = useSession()
+    const user = session.user.data
 
-    // }, [image])
+    const hallArray = [...halls?.data]
 
-    const allImages = []
+    const getHallId = () => {
+        const selectedHall = hallArray.find((hallValue) => {
+            return hallValue?.name === hall
+        })
+        return selectedHall?.id
+    }
 
     const handleImages = (e) => {
-        const reader = new FileReader()
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                setImages(reader.result)
+        const imageFile = e.target.files[0]
+        const imageType = imageFile.type
+        let allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+
+        if (allowedExtension.indexOf(imageType) > -1) {
+
+            const imageForm = new FormData();
+            imageForm.append('image', imageFile, images?.name)
+            setImages(imageForm)
+
+            const reader = new FileReader()
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setimagePreview(reader.result)
+                }
             }
+            reader.readAsDataURL(e.target.files[0])
+            reader.onerror = () => {
+                console.error(reader.error)
+            }
+        } else {
+            alert('Only Images are accepted')
         }
-        reader.readAsDataURL(e.target.files[0])
-        reader.onerror = () => {
-            console.error(reader.error)
+
+    }
+
+    const condition = (hall?.length > 1) && (description?.length > 1) && (JSON.stringify(numOfOccupants)?.length > 1) && (JSON.stringify(price)?.length > 1) && (options?.essArr?.length >= 1) && (negotialble?.length > 1) && (options?.occupantType?.length > 1) && (options?.bathroomType?.length > 1) && (imagePreview?.length > 1)
+
+    useEffect(() => {
+        console.log(images)
+        console.log(condition)
+    }, [images])
+
+
+    const handleSubmit = async () => {
+        const essentials = options?.essArr.join(',')
+        const hallId = getHallId()
+
+        const roomDetails = {
+            hall: hallId,
+            numOfOccupants: numOfOccupants,
+            price: price,
+            description: description,
+            negotialble: negotialble,
+            occupantType: options?.occupantType,
+            bathroomType: options?.bathroomType,
+            essentials: essentials
+        }
+        if (condition) {
+            const result = await axios.post('http://localhost:5000/hostRoom',
+                {
+                    userId: user?.id,
+                    roomDetails: roomDetails
+                },
+                {
+                    headers: {
+                        accept: '*/*',
+                        'Content-Type': 'application/json'
+                    }
+                })
+            const roomId = result.data.data
+            const imageResult = await axios.post(`http://localhost:5000/addRoomImage?roomId=${roomId}`,
+                images,
+                {
+                    headers: {
+                        accept: '*/*',
+                        'Content-Type': 'application/json'
+                    }
+                })
+            console.log(imageResult)
+        } else {
+            alert("All fields are required")
         }
     }
+
+
+    
+
 
 
 
@@ -62,69 +142,33 @@ function host() {
                 <HostWrapper className="host__detail__box" >
                     <HostWrapper className="host__input__section">
                         <HostWrapper>
-                            <Input type="text" placeholder="University" className="register__input" />
+                            University Of Ghana
                         </HostWrapper>
                         <HostWrapper>
-                            <Input type="text" placeholder="Hall" className="register__input" />
-                        </HostWrapper>
-                        <HostWrapper>
-                            <Input type="text" placeholder="Room Number" className="register__input" />
+                            <SelectOptions
+                                options={hallArray.map((hallName) => hallName.name)}
+                                selectedOption={setHall}
+                            >
+                                Select
+                            </SelectOptions>
                         </HostWrapper>
                     </HostWrapper>
                     <HostWrapper className="host__section">
                         <HostWrapper className="host__sub__section">
                             <Text className="host__sub__text">
-                                Bed
+                                Number of Ocupants In room
                             </Text>
                         </HostWrapper>
                         <HostWrapper className="host__check__section" >
-                            <Check>
-                                Whole
-                            </Check>
-                            <Check>
-                                Perch
-                            </Check>
+                            <SelectOptions
+                                options={[1, 2, 3, 4]}
+                                selectedOption={setNumOfOccupants}
+                            >
+                                Select
+                            </SelectOptions>
                         </HostWrapper>
                     </HostWrapper>
-                    <HostWrapper className="host__section">
-                        <HostWrapper className="host__sub__section">
-                            <Text className="host__sub__text">
-                                Bathroom
-                            </Text>
-                        </HostWrapper>
-                        <HostWrapper className="host__check__section">
-                            <Check>
-                                In room
-                            </Check>
-                            <Check>
-                                On Floor
-                            </Check>
-                        </HostWrapper>
-                    </HostWrapper>
-                    <HostWrapper className="host__section">
-                        <HostWrapper className="host__sub__section">
-                            <Text className="host__sub__text">
-                                Essentials
-                            </Text>
-                        </HostWrapper>
-                        <HostWrapper className="host__check__section">
-                            <Check>
-                                Fridge
-                            </Check>
-                            <Check>
-                                Cooker
-                            </Check>
-                            <Check>
-                                Fan
-                            </Check>
-                            <Check>
-                                WiFi
-                            </Check>
-                            <Check>
-                                Other
-                            </Check>
-                        </HostWrapper>
-                    </HostWrapper>
+                    <HostRoomOptions setOptions={setOptions} />
                     <HostWrapper className="host__section">
                         <HostWrapper className="host__sub__section">
                             <Text className="host__sub__text">
@@ -132,22 +176,14 @@ function host() {
                             </Text>
                         </HostWrapper>
                         <HostWrapper >
-                            <Input type="file" multiple onChange={(e) => handleImages(e)} />
+                            <Input type="file" required name={images?.name} accept='image/*' onChange={(e) => handleImages(e)} />
                         </HostWrapper>
-                        <HostWrapper className="host__images__box" 
-                        open={images ? true : false} >
-                            {images ? <HostWrapper className="host__image">
-                                <Image src={images} layout="fill"
+                        <HostWrapper className="host__images__box"
+                            open={imagePreview ? true : false} >
+                            {imagePreview ? <HostWrapper className="host__image">
+                                <Image src={imagePreview} layout="fill"
                                     alt="dp" />
                             </HostWrapper> : null}
-                            {/* {
-                                images?.map((image, index) => (
-                                    <HostWrapper key={index}>
-                                        <Image src={image} layout="fill"
-                                            alt="dp" />
-                                    </HostWrapper>
-                                ))
-                            } */}
                         </HostWrapper>
                     </HostWrapper>
                     <HostWrapper className="host__section">
@@ -157,7 +193,12 @@ function host() {
                             </Text>
                         </HostWrapper>
                         <HostWrapper >
-                            <TextInput type="text" placeholder="Describe your room" className="host__description__text" />
+                            <TextInput
+                                type="text"
+                                placeholder="Describe your room"
+                                className="host__description__text"
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
                         </HostWrapper>
                     </HostWrapper>
                     <HostWrapper className="host__section">
@@ -171,18 +212,19 @@ function host() {
                                 <Text className="cedi__input" >
                                     Gh₵
                                 </Text>
-                                <Input type="number" placeholder="Price" className="price__input" />
+                                <Input
+                                    type="number"
+                                    placeholder="Price"
+                                    className="price__input"
+                                    onChange={(e) => setPrice(e.target.value)}
+                                />
                             </HostWrapper>
-                            <HostWrapper>
-                                <Check>
-                                    Negotiable
-                                </Check>
-                            </HostWrapper>
+                            <RoomNegotiation setValue={setNegotialble} />
                         </HostWrapper>
 
                     </HostWrapper>
                     <HostWrapper className="host__section__btn">
-                        <Button name="primary expand" >
+                        <Button name="primary expand" click={() => handleSubmit()} >
                             Submit Room
                         </Button>
                     </HostWrapper>
@@ -190,6 +232,26 @@ function host() {
             </HostWrapper>
         </HostWrapper>
     )
+}
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context)
+    const response = await axios.get('http://localhost:5000/getHalls')
+
+    const halls = response.data
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F',
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: { session, halls }
+    }
 }
 
 export default host

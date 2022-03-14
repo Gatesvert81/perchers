@@ -3,14 +3,14 @@ import Image from 'next/image'
 import HomeNav from '../src/Components/HomeNav'
 import Button from '../src/styledComponents/Button'
 import HomeWrapper from '../src/styledComponents/HomeWrapper'
-// import Image from '../src/styledComponents/Image'
 import Input from '../src/styledComponents/Input'
 import Main from '../src/styledComponents/Main'
 import bg from '../public/pic.jpg'
 import { useState } from 'react'
 import Text from '../src/styledComponents/Text'
 import AnchorLink from '../src/Components/AnchorLink'
-// import firebase from '../src/firebase/initFirebase'
+import Select from '../src/styledComponents/Select'
+import Option from '../src/styledComponents/Option'
 
 
 export default function Home() {
@@ -75,7 +75,21 @@ export default function Home() {
           <HomeWrapper className="home__main__search" >
             <HomeWrapper className="home__uni__search" >
               {/* <HomeWrapper className="uni__search"> */}
-              <Input type='text' placeholder="University" className="uni__search__input" />
+              {/* <Input type='text' placeholder="University" className="uni__search__input" /> */}
+              <Select required>
+                <Option value="Univerity Of Ghana, Legon">
+                  Univerity of Ghana, Legon
+                </Option>
+                <Option value="KNUST" >
+                  KNUST
+                </Option>
+                <Option value="UCC" >
+                  UCC
+                </Option>
+                <Option value="University of Winneba" >
+                  University of Winneba
+                </Option>
+              </Select>
               {/* </HomeWrapper> */}
               <AnchorLink route="/dorms">
                 <Button name="primary" >
@@ -97,11 +111,11 @@ export default function Home() {
         </HomeWrapper>
         <HomeWrapper className="home__main__image" >
           <HomeWrapper className="home__image__container" image={bg} >
-            <Image src={bg}
+            {/* <Image src={bg}
               // width={100}
               // height={100}
               layout="fill"
-              alt="dp" />
+              alt="dp" /> */}
           </HomeWrapper>
         </HomeWrapper>
       </Main>

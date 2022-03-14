@@ -24,6 +24,7 @@ const ListWrapper = styled.div`
         /* background-color: white; */
         width: 100%;
         height: 120px;
+        position: relative;
     }
 
     &.list__card__detail{

@@ -8,15 +8,8 @@ import CarouselWrapper from '../styledComponents/CarouselWrapper'
 
 function Carousel({ preview, images }) {
 
-    // console.log(images)
-
     const [currentImage, setCurrentImage] = useState(0)
 
-    // const images = [
-    //     'blueviolet', 'bisque', 'azure', 'whitesmoke', 'beige', 'chocolate'
-    // ]
-
-    // console.log(images)
 
 
     const handleNextImage = useCallback(

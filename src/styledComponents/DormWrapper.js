@@ -152,6 +152,42 @@ const DormWrapper = styled.div`
         display: none;
     }
 
+    &.details{
+        width: 100% ;
+        height: fit-content;
+    }
+
+    &.details__head{
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    &.details__main__section{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 10px; 
+        
+    }
+
+    &.details__main{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px; 
+    }
+
+    &.details__section{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &.details__section__head{
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
     /* Mid-Desktop View  */
 
 

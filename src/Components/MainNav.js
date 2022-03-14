@@ -7,29 +7,34 @@ import Image from 'next/image'
 import menu from '../../public/menu.png'
 import notify from '../../public/notify.png'
 import AnchorLink from './AnchorLink'
+import { useSession, signOut } from 'next-auth/react'
 
 // Main Navigation on the homepage 
 
-function MainNav({ children }) {
+function MainNav({ children, chatChildren }) {
 
     const [sideNav, setSideNav] = useState(false)
+
+    const { data: session } = useSession()
+
+    const user = session?.user.data
 
     const sideNavMainBtns = [
         {
             name: 'My Rental',
             seen: false,
-            route: "/profile/rentals",
+            route: `/profile/rentals?userId=${user?.id}`,
             number: 0
         },
         {
             name: 'Messages',
-            route: "/profile/chat/",
+            route: `/profile/chat?userId=${user?.id}`,
             seen: true,
             number: 4
         },
         {
             name: 'Favorites',
-            route: "/profile/rentals",
+            route: `/profile/rentals?userId=${user?.id}`,
             seen: false,
             number: 0
         }
@@ -42,12 +47,17 @@ function MainNav({ children }) {
                 <NavWrapper className="list__nav__main" >
                     <NavWrapper className="list__nav__logo" >
                         <AnchorLink route="/dorms">
-                            PINQL
+                            <Button name="list__nav__btn">
+                                PINQL
+                            </Button>
                         </AnchorLink>
                     </NavWrapper>
                     <NavWrapper className="list__nav__filters" >
                         {children}
                     </NavWrapper>
+                </NavWrapper>
+                <NavWrapper className="chatChildren" >
+                    {chatChildren}
                 </NavWrapper>
                 <NavWrapper className="list__nav__btns" >
                     <Button name="icon" >
@@ -66,57 +76,82 @@ function MainNav({ children }) {
                 </NavWrapper>
             </Nav>
             <NavWrapper className="side__nav" open={sideNav} >
-                <NavWrapper className="side__nav__main"  >
-                    <NavWrapper
-                        className="side__nav__cancel"
-                        onClick={() => setSideNav(false)}
-                    >
+                <NavWrapper
+                    className="side__nav__cancel"
+                    onClick={() => setSideNav(false)}
+                >
 
-                    </NavWrapper>
-                    <NavWrapper className="side__nav__profile" >
-                        <ProfileCard className="side__nav__proflie__btn" >
-                            <AnchorLink route="/profile">
-                                <Button name="tetiary expand">
-                                    Edit Profile
+                </NavWrapper>
+                {session ? (
+                    <>
+                        <NavWrapper className="side__nav__main"  >
+                            <NavWrapper className="side__nav__profile" >
+                                <ProfileCard name={user?.name} className="side__nav__proflie__btn" >
+                                    <AnchorLink route="/profile">
+                                        <Button name="tetiary expand">
+                                            View Profile
+                                        </Button>
+                                    </AnchorLink>
+                                    <AnchorLink route="/host">
+                                        <Button name="tetiary expand">
+                                            Host a Room
+                                        </Button>
+                                    </AnchorLink>
+                                </ProfileCard>
+                            </NavWrapper>
+                            <NavWrapper
+                                className="side__nav__main__btns"
+                            >
+                                {
+                                    sideNavMainBtns.map((btn, index) => (
+                                        <AnchorLink route={btn.route} key={index} >
+                                            <Button
+                                                name="side__nav__btn"  >
+                                                <NavWrapper className="side__nav__btn__text" >
+                                                    {btn.name}
+                                                </NavWrapper>
+                                                <NavWrapper
+                                                    className="side__nav__btn__num"
+                                                    seen={btn.seen}
+                                                    empty={btn.number > 0}
+                                                >
+                                                    {btn.number}
+                                                </NavWrapper>
+                                            </Button>
+                                        </AnchorLink>
+                                    ))
+                                }
+
+                            </NavWrapper>
+                        </NavWrapper>
+                        <NavWrapper>
+                            <Button name="secondary" click={() => signOut()} >
+                                Log out
+                            </Button>
+                        </NavWrapper>
+                    </>) : (
+                    <NavWrapper className='side__nav__no__user' >
+                        <NavWrapper className='side__nav__no__user__head'>
+                            You are not Logged In
+                        </NavWrapper>
+                        <NavWrapper>
+                            <AnchorLink route="/registration">
+                                <Button
+                                    name="primary"
+                                >
+                                    Sign Up
                                 </Button>
                             </AnchorLink>
-                            <AnchorLink route="/host">
-                                <Button name="tetiary expand">
-                                    Host a Room
-                                </Button>
-                            </AnchorLink>
-                        </ProfileCard>
-                    </NavWrapper>
-                    <NavWrapper
-                        className="side__nav__main__btns"
-                    >
-                        {
-                            sideNavMainBtns.map((btn, index) => (
-                                <AnchorLink route={btn.route} key={index} >
-                                    <Button
-                                        name="side__nav__btn"  >
-                                        <NavWrapper className="side__nav__btn__text" >
-                                            {btn.name}
-                                        </NavWrapper>
-                                        <NavWrapper
-                                            className="side__nav__btn__num"
-                                            seen={btn.seen}
-                                            empty={btn.number > 0}
-                                        >
-                                            {btn.number}
-                                        </NavWrapper>
-                                    </Button>
+                        </NavWrapper>
+                        <NavWrapper className='side__nav__no__user__sub'>
+                            <NavWrapper className='side__nav__no__user__sub__text'>
+                                <AnchorLink route="/registration">
+                                    Already have an account? Sign in
                                 </AnchorLink>
-                            ))
-                        }
-
+                            </NavWrapper>
+                        </NavWrapper>
                     </NavWrapper>
-                </NavWrapper>
-                <NavWrapper>
-                    <Button name="secondary" >
-                        Log out
-                    </Button>
-                </NavWrapper>
+                )}
             </NavWrapper>
         </>
     )

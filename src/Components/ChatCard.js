@@ -3,13 +3,13 @@ import Image from 'next/image'
 import ChatWrapper from '../styledComponents/ChatWrapper'
 import AnchorLink from './AnchorLink'
 
-function ChatCard({ children, image, name }) {
+function ChatCard({ children, image, name, chatId }) {
     return (
-        <AnchorLink route={`/profile/chat/${name}`} >
+        <AnchorLink route={`/profile/chat/${name}?chatId=${chatId}`} >
             <ChatWrapper className="chat__card" >
                 <ChatWrapper className="chat__card__image__box" >
                     <ChatWrapper className="chat__card__image" >
-                        <Image src={image} layout="fill" />
+                        {/* <Image src={image} layout="fill" /> */}
                     </ChatWrapper>
                 </ChatWrapper>
                 <ChatWrapper className="chat__card__main">

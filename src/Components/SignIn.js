@@ -1,24 +1,34 @@
 import React from 'react'
+import { signIn } from 'next-auth/react'
 import Button from '../styledComponents/Button'
 import Form from '../styledComponents/Form'
 import Input from '../styledComponents/Input'
 import RegisWrapper from '../styledComponents/RegisWrapper'
-import AnchorLink from './AnchorLink'
 
-function SignIn({ setSignInDetail }) {
+
+function SignIn() {
 
     // Handles signIn form submit 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const { studentID, email, password  } = e.target.elements
+        const { email, password } = e.target.elements
 
-        const studentId = studentID.value
         const userEmail = email.value
         const userPassword = password.value
 
-        // This function sends form details to the registration 
-        setSignInDetail({ studentId, userEmail, userPassword  })
+        const emailArr = userEmail.split('@')
+        const emailCondition = emailArr[1] === 'st.ug.edu.gh'
+
+        if (emailCondition) {
+            signIn("credentials", {
+                email: userEmail,
+                password: userPassword,
+                callbackUrl: '/dorms'
+            })
+        } else {
+            return alert("Please input your student email")
+        }
 
     }
 
@@ -26,23 +36,21 @@ function SignIn({ setSignInDetail }) {
         <Form className="register__form" onSubmit={handleSubmit} >
             <RegisWrapper className="sign__in__form" >
                 <RegisWrapper className=" register__input__div " textholder="E-mail" >
-                    <Input type="email" className=" register__input " name="email" placeholder="Enter student email" />
+                    <Input type="email" className=" register__input " name="email" placeholder="Student email" required />
                 </RegisWrapper>
-                <RegisWrapper className=" register__input__div " textholder="Student id" >
-                    <Input type="number" className=" register__input " name="studentID" placeholder="eg. 10928374" />
-                </RegisWrapper>
+                {/* <RegisWrapper className=" register__input__div " textholder="Student id" >
+                    <Input type="number" className=" register__input " name="studentID" placeholder="Student ID" required />
+                </RegisWrapper> */}
                 <RegisWrapper className=" register__input__div " textholder="Password" >
-                    <Input type="password" className=" register__input " name="password" placeholder="Enter Password" />
+                    <Input type="password" className=" register__input " name="password" placeholder="Password" required />
                 </RegisWrapper>
             </RegisWrapper>
             <RegisWrapper className="register__form__btn" >
-                <AnchorLink route="/dorms" >
-                    <Button
-                        type="submit"
-                        name="primary" >
-                        Sign In
-                    </Button>
-                </AnchorLink>
+                <Button
+                    type="submit"
+                    name="primary" >
+                    Sign In
+                </Button>
             </RegisWrapper>
         </Form>
     )

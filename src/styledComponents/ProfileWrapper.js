@@ -13,7 +13,7 @@ const ProfileWrapper = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         padding: 20px 5vw;
         /* background-color: blanchedalmond; */
     }
@@ -25,6 +25,15 @@ const ProfileWrapper = styled.div`
 
     &.profile__image__box{
         padding-bottom: 20px ;
+    }
+
+    &.profile__page__main{
+        width: 100% ;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
     &.profile__details{
@@ -79,7 +88,7 @@ const ProfileWrapper = styled.div`
         border-radius: 5px;
         box-shadow: 
             0px 0px 10px ${COLORS.shadow};
-            /* 0px 0px 0px grey; */
+        padding-bottom: 5px;
 
     }
 
@@ -110,12 +119,42 @@ const ProfileWrapper = styled.div`
         background-color: aquamarine;
     }
 
+    &.profile__card__name{
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
     &.profile__card__btns{
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 30px;
         grid-gap: 5px;
         padding: 5px;
+    }
+
+    @media all and (min-width: 470px) {
+        &.profile__page{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 20px 5vw;
+            /* background-color: blanchedalmond; */
+        }
+
+        &.profile__details{
+            width: 100% ;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            /* align-items: center; */
+            /* background-color: tomato; */
+            
+        }
+
     }
 
 `

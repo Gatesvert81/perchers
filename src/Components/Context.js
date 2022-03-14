@@ -1,15 +1,17 @@
-import React,{createContext, useState} from 'react'
+import React, { createContext, useState } from 'react'
 
-export const RegisterContext = createContext()
 
-function Context({children}) {
+export const IsLoggedInContext = createContext()
 
-    const [register, setregister] = useState(null)
+function Context({ children }) {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(null)
 
     return (
-        <RegisterContext.Provider value={[register, setregister]} >
+
+        <IsLoggedInContext.Provider value={[isLoggedIn, setIsLoggedIn]} >
             {children}
-        </RegisterContext.Provider >
+        </IsLoggedInContext.Provider>
     )
 }
 

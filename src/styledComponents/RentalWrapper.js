@@ -30,14 +30,18 @@ const RentalWrapper = styled.div`
         /* background-color: steelblue; */
     }
 
+    &.rental__section{
+        width: 100%;
+        height: 100%;
+    }
+
     &.rental__render{
         width: 100% ;
         height: 100% ;
-        display: flex;
-        flex-direction: column;
-        /* align-items: center; */
-        justify-content: flex-start;
-        /* background-color: tan; */
+        display: grid;
+        padding: 10px 0px;
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
     }
 
     &.render__empty{

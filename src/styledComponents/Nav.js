@@ -20,9 +20,11 @@ const Nav = styled.nav`
         align-items: center;
         padding: 10px 20px;
         position: sticky;
-        background-color: lavender;
+        background-color: white;
+        color: black;
         top: 0px;
         z-index: 10;
+        border-bottom: 1px solid gray;
         /* box-shadow: 0px 0px 10px ${COLORS.shadow}; */
     }
     

@@ -1,30 +1,30 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SignIn from '../src/Components/SignIn'
 import SignUp from '../src/Components/SignUp'
 import Button from '../src/styledComponents/Button'
 import RegisWrapper from '../src/styledComponents/RegisWrapper'
 import Head from 'next/head'
-import { RegisterContext } from '../src/Components/Context'
+import { getSession } from 'next-auth/react'
+
 
 // Registration Page containg the Sign Up and Sign In 
 
 function registration() {
 
-    // uses Context to Toggle between Sign Up and SIgn In 
-    const [register, setregister] = useContext(RegisterContext)
+    // Set state for Sign In and Sign Up Tab
+    const [register, setRegister] = useState(false)
 
-    // State to get sign Up and Sign In details 
-    const [signUpDetails, setSignUpDetail] = useState(null)
-    const [signInDetails, setSignInDetail] = useState(null)
+    // Get query set from router 
+    // const { registerValue } = router.query
 
-    // Displays sign Up and sign In details in console 
-    useEffect(() => {
-        console.log('sign In' ,signInDetails)
-    }, [signInDetails])
-
-    useEffect(() => {
-        console.log('sign Up' ,signUpDetails)
-    }, [signUpDetails])
+    // useEffect(() => {
+    //     if (registerValue === 'true') {
+    //         setRegister(false)
+    //     } else {
+    //         setRegister(true)
+    //     }
+    //     console.log(registerValue)
+    // }, [register])
 
 
     return (
@@ -49,30 +49,47 @@ function registration() {
                 <RegisWrapper register={register} className="registration__section" >
                     <RegisWrapper className="registration__tab" >
                         <Button
-                            click={() => setregister(false)} 
+                            click={() => setRegister(false)}
                             name="sign__tab__btn sign__in__tab__select"
                             select={register}
-                            >
-                            Sign In 
+                        >
+                            Sign In
                         </Button>
                         <Button
-                            click={() => setregister(true)}
+                            click={() => setRegister(true)}
                             name="sign__tab__btn sign__up__tab__select"
                             select={register}
-                            >
+                        >
                             Sign Up
                         </Button>
                     </RegisWrapper>
                     {/* This section display the sign Up or SIgn In depending on the one toggled  */}
                     <RegisWrapper className="registration__render">
                         {
-                            register ? <SignUp setSignUpDetail={setSignUpDetail} /> : <SignIn setSignInDetail={setSignInDetail} />
+                            register ? <SignUp /> : <SignIn />
                         }
                     </RegisWrapper>
                 </RegisWrapper>
             </RegisWrapper>
         </RegisWrapper>
     )
+}
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context)
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/dorms',
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: { session }
+    }
 }
 
 export default registration

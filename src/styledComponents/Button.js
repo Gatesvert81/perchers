@@ -9,8 +9,9 @@ const StyledButton = styled.button`
     background: none;
     border: hidden;
     cursor: pointer;
+    font-size: 1rem;
 
-    &.primary{
+    &.primary, &.sign__in__btn, &.sign__up__btn{
         padding: 10px 20px ;
         color: white;
         font-size: 0.9rem;
@@ -24,7 +25,7 @@ const StyledButton = styled.button`
         align-items: center;
     }
 
-    &.primary:hover, &.tetiary:hover, &.regular:hover, &.secondary:hover, &.side__nav__btn:hover  {
+    &.primary:hover, &.tetiary:hover, &.regular:hover, &.secondary:hover, &.side__nav__btn:hover , &.sign__up__btn:hover, &.offer__btn:hover {
         box-shadow: 
             0px 0px 10px ${COLORS.btnShadow};
     }
@@ -79,9 +80,6 @@ const StyledButton = styled.button`
         height: 100%;
     }
 
-    
-    
-
     &.nav__btn{
         padding: 5px;
         font-size: 0.75rem;
@@ -92,6 +90,12 @@ const StyledButton = styled.button`
         position: relative;
         width: 30px ;
         height: 30px;
+    }
+
+    &.list__nav__btn{
+        font-weight: 600;
+        color: black;
+        letter-spacing: 1px;
     }
 
     &.filter{
@@ -122,25 +126,12 @@ const StyledButton = styled.button`
     }
 
     &.sign__in__btn{
+        background-color: transparent;
         border: 2px solid grey;
-        /* height: 100% ; */
         border-radius: 5px;
     }
 
-    &.sign__up__btn{
-        padding: 10px 20px ;
-        font-size: 0.75rem;
-        font-weight: 600;
-        border: 2px solid grey;
-        border-radius: 5px;
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-        margin-left: 10px ;
-    }
-
+    
     &.section__btn{
         width: 50%;
         text-align: center;
@@ -170,7 +161,7 @@ const StyledButton = styled.button`
     }
 
     &.sign__in__tab__select{
-        color: ${ props => props.select ? 'black' : 'black' };
+        color: black;
         font-size: ${ props => props.select ? '1rem' : '1.5rem' };
         opacity: ${ props => props.select ? '0.7' : '1' }
     }

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Button from '../styledComponents/Button'
 import Nav from '../styledComponents/Nav'
 import NavWrapper from '../styledComponents/NavWrapper'
@@ -6,32 +6,34 @@ import AnchorLink from './AnchorLink'
 import Image from 'next/image'
 import arrow from '../../public/arrow.png'
 import Text from '../styledComponents/Text'
-import { RegisterContext } from './Context'
 
 // Landing Page Navigation Bar 
 function HomeNav() {
 
-    const [register, setregister] = useContext(RegisterContext)
-
     return (
         <Nav className="homenav" >
             <NavWrapper className="homenav__logo">
-                PINQL
+                <Button name="list__nav__btn" >
+                    PINQL
+                </Button>
             </NavWrapper>
             <NavWrapper className="homenav__main" >
                 <NavWrapper className="homenav__main__btn">
                     <NavWrapper>
-                        Discover
+                        <Button>
+                            Discover
+                        </Button>
                     </NavWrapper>
                     <NavWrapper>
-                        Help
+                        <Button>
+                            Help
+                        </Button>
                     </NavWrapper>
                 </NavWrapper>
                 <NavWrapper className="homenav__signup" >
-                    <AnchorLink route={'/registration'} >
+                    <AnchorLink route={`/registration?registerValue=${false}`} >
                         <Button
-                            name="primary"
-                            click={() => setregister(false)}
+                            name="sign__in__btn"
                         >
                             <Text className="sign__up__btn__text" >
                                 Sign In
@@ -43,10 +45,9 @@ function HomeNav() {
                             />
                         </Button>
                     </AnchorLink>
-                    <AnchorLink route="/registration" >
+                    <AnchorLink route={`/registration?registerValue=${true}`} >
                         <Button
                             name="sign__up__btn"
-                            click={() => setregister(true)}
                         >
                             <Text className="sign__up__btn__text" >
                                 Sign Up

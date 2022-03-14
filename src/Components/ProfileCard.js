@@ -1,12 +1,11 @@
 import React from 'react'
 import ProfileWrapper from '../styledComponents/ProfileWrapper'
 import Text from '../styledComponents/Text'
-// import person from '../../public/person.png'
-// import Image from 'next/image'
+
 
 // Card to display user profile details 
 
-function ProfileCard({children}) {
+function ProfileCard({ children, title, name }) {
     return (
         <ProfileWrapper className="profile__card" >
             <ProfileWrapper className="profile__card__detail" >
@@ -15,12 +14,12 @@ function ProfileCard({children}) {
                     {/* <Image src={person} width='100%' height="100%" /> */}
                 </ProfileWrapper>
                 <ProfileWrapper className="profile__card__person">
-                    <Text className="fadded__head" >
-                        Host
+                    <Text className="fadded__head" > 
+                        {title}
                     </Text>
                 </ProfileWrapper>
                 <ProfileWrapper className="profile__card__name" >
-                    Josephine Thompson
+                    {name}
                 </ProfileWrapper>
             </ProfileWrapper>
             <ProfileWrapper className="profile__card__btns">

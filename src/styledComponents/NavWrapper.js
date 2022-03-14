@@ -34,6 +34,7 @@ const NavWrapper = styled.div`
         justify-content: space-between;
         align-items: center ;
         width: 100% ;
+        gap: 10px;
         /* background-color: aliceblue; */
     }
 
@@ -76,6 +77,16 @@ const NavWrapper = styled.div`
         align-items: center;
     }
 
+    &.chatChildren{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
     &.list__nav__btns{
         width: 20%;
         display: flex;
@@ -90,14 +101,13 @@ const NavWrapper = styled.div`
         display: flex ;
         flex-direction: column;
         justify-content: space-between;
-        /* align-items: center; */
         position: fixed;
         top: 0;
         right: 0;
         z-index: 100;
         background-color: whitesmoke;
         padding: 10px 20px ;
-        transform: ${ props => props.open ? `translateX(0)` : `translateX(100%)`  };
+        transform: ${ props => props.open ? 'translateX(0)' : 'translateX(100%)'  };
         transition: 0.2s;
 
     }
@@ -106,7 +116,7 @@ const NavWrapper = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        /* align-items: center; */
         /* background-color: honeydew; */
     }
 
@@ -177,6 +187,21 @@ const NavWrapper = styled.div`
         border-radius: 50%;
         top: 0;
         right: 5%;
+    }
+
+    &.side__nav__no__user{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100% ;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+    }
+
+    &.side__nav__no__user__sub{
+        font-size: 0.75rem;
     }
 
 
