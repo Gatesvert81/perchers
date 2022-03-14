@@ -111,7 +111,11 @@ const HomeWrapper = styled.div`
         height: 40vh;
         padding: 2px;
         border-radius: 2px;
-        position: relative !important ;
+        position: relative  ;
+    }
+
+    .home__image__itself{
+        object-fit: cover;
     }
 
     /* Mid-Desktop View  */

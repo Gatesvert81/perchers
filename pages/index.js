@@ -111,11 +111,11 @@ export default function Home() {
         </HomeWrapper>
         <HomeWrapper className="home__main__image" >
           <HomeWrapper className="home__image__container" image={bg} >
-            {/* <Image src={bg}
+            <Image src={bg}
               // width={100}
               // height={100}
               layout="fill"
-              alt="dp" /> */}
+              alt="dp" className="home__image__itself" />
           </HomeWrapper>
         </HomeWrapper>
       </Main>
